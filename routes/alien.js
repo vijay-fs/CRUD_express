@@ -17,10 +17,9 @@ router.get("/:id", async (req, res) => {
     res.send("Error " + err);
   }
 });
-router.patch("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const alien = await alienSchema.findById(req.params.id);
-    alien.sub = req.body.sub;
     alien.name = req.body.name;
     alien.tech = req.body.tech;
     const a1 = await alien.save();
@@ -34,7 +33,6 @@ router.post("/", async (req, res) => {
   const alien = new alienSchema({
     name: req.body.name,
     tech: req.body.tech,
-    sub: req.body.sub,
   });
   try {
     const a1 = await alien.save();
