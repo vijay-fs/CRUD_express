@@ -43,7 +43,12 @@ router.post("/", async (req, res) => {
   }
 });
 router.delete("/:id", async (req, res) => {
-  const alien = await alienSchema.findByIdAndDelete(req.params.id);
-  console.log(alien);
+  try {
+    const alien = await alienSchema.findByIdAndDelete(req.params.id);
+    console.log(alien);
+    res.send("deleted");
+  } catch (err) {
+    res.send("ERROR" + err);
+  }
 });
 module.exports = router;
